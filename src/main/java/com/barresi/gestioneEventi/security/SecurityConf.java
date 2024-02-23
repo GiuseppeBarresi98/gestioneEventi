@@ -41,5 +41,4 @@ public class SecurityConf {
     PasswordEncoder getBcrypt(){
         return new BCryptPasswordEncoder(11);
     }
-
-    }
+}

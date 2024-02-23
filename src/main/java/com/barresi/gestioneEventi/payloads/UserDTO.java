@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserDTO {
-    @NotEmpty(message = "inserire username")
+    @NotEmpty(message = "Username obbligatorio")
     private String username;
-    @NotEmpty(message = "Nome )
+    @NotEmpty(message = "Nome obbligatorio")
     private String name;
     @NotEmpty(message = "Email obbligatoria")
     private String email;

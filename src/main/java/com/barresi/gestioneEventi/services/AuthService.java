@@ -30,7 +30,7 @@ public class AuthService {
             user.setEmail(userDTO.getEmail());
             user.setRuolo(Role.NORMALE);
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            user.setRuolo(Role.NORMALE);
+            user.setRuolo(Role.ORGANIZZATORE);
             return userDAO.save(user);
     }
 

@@ -22,26 +22,31 @@ public class EventController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ORGANIZZATORE')")
-    public void deleteEvent(@PathVariable UUID id){
+    public void deleteEvent(@PathVariable UUID id) {
         eventService.deleteEvent(id);
     }
 
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ORGANIZZATORE')")
-    public Event updateEvent(@PathVariable UUID id, @RequestBody EventDTO eventDTO){
-        return eventService.updateEvent(id,eventDTO);
+    public Event updateEvent(@PathVariable UUID id, @RequestBody EventDTO eventDTO) {
+        return eventService.updateEvent(id, eventDTO);
     }
 
     @PostMapping("/create_event")
     @PreAuthorize("hasAuthority('ORGANIZZATORE')")
-    public Event createEvent(@AuthenticationPrincipal User user, @RequestBody EventDTO eventDTO){
-        return eventService.createEvent(eventDTO,user);
+    public Event createEvent(@AuthenticationPrincipal User user, @RequestBody EventDTO eventDTO) {
+        return eventService.createEvent(eventDTO, user);
     }
 
     @GetMapping
-    public Page<Event> getListaEventi(@RequestParam(defaultValue = "0") int pagine, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "titolo") String orderBy){
-        return eventService.getListaEventi(pagine,size,orderBy);
+    public Page<Event> getListaEventi(@RequestParam(defaultValue = "0") int pagine, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "titolo") String orderBy) {
+        return eventService.getListaEventi(pagine, size, orderBy);
     }
 
+    @PostMapping("/{eventId}/partecipa")
+    public Event partecipaEvento(@PathVariable UUID eventId, @AuthenticationPrincipal User authenticatedUser) {
+        Event eventoPartecipato = eventService.partecipaEvento(eventId, authenticatedUser);
+        return eventoPartecipato;
+    }
 }

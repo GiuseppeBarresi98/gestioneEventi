@@ -40,7 +40,7 @@ public class JWTFilter extends OncePerRequestFilter {
         jwtTools.verifyToken(accessToken);
         String id = jwtTools.getIDfromtoken(accessToken);
         User user = userService.findUserById(UUID.fromString(id));
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null,user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }

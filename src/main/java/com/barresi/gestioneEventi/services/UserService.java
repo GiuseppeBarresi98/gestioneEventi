@@ -28,4 +28,6 @@ public class UserService {
         return userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException(email));
     }
 
+
+
 }

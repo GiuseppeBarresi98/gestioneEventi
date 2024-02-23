@@ -3,6 +3,7 @@ package com.barresi.gestioneEventi.services;
 
 import com.barresi.gestioneEventi.entities.Event;
 import com.barresi.gestioneEventi.entities.User;
+import com.barresi.gestioneEventi.exceptions.BadRequestException;
 import com.barresi.gestioneEventi.exceptions.NotFoundException;
 import com.barresi.gestioneEventi.payloads.EventDTO;
 import com.barresi.gestioneEventi.repository.EventDAO;
@@ -47,8 +48,6 @@ public class EventService {
         return eventDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
     }
 
-
-
     public Event updateEvent(UUID id,EventDTO eventDTO){
         Event found = this.findEventById(id);
         found.setTitolo(eventDTO.getTitolo());
@@ -56,6 +55,17 @@ public class EventService {
         found.setDescrizione(eventDTO.getDescrizione());
         found.setData(eventDTO.getData());
         return eventDAO.save(found);
+    }
+
+
+    public Event partecipaEvento(UUID idEvento, User user) {
+        Event evento = this.findEventById(idEvento);
+        if (evento.getUserList().size() < evento.getNumero_posti_disponibili()) {
+            evento.getUserList().add(user);
+            return eventDAO.save(evento);
+        } else {
+            throw new BadRequestException("Evento pieno");
+        }
     }
 
 

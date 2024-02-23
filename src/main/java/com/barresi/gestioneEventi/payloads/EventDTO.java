@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -16,5 +15,5 @@ public class EventDTO {
     private LocalDate data;
     private String luogo;
     private int numero_posti_disponibili;
-    private UUID organizzatore_id;
+
 }

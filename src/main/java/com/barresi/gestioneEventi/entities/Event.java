@@ -36,11 +36,12 @@ public class Event {
     private List<User> userList;
 
 
-    public Event(String titolo, String descrizione, LocalDate data, String luogo, int numero_posti_disponibili) {
+    public Event(String titolo, String descrizione, LocalDate data, String luogo, int numero_posti_disponibili,User organizzatore) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.data = data;
         this.luogo = luogo;
         this.numero_posti_disponibili = numero_posti_disponibili;
+        this.organizzatore = organizzatore;
     }
 }
